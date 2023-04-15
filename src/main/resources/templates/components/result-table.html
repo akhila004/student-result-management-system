@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="result-table (headers,results)">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col" th:each="tableHeader: ${headers}" th:text="${tableHeader}" >#</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="result: ${results}">
+      <!--th scope="row" th:text="${student.id}"></th-->
+      <td th:text="${result.courseName}"></td>
+      <td th:text="${result.studentName}"></td>
+      <td th:text="${result.score}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

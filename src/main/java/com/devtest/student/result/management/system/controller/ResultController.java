@@ -30,8 +30,8 @@ public class ResultController {
     public String showResultForm(Model model){
         model.addAttribute("result", new Result());
         model.addAttribute("pages", Pages.values());
-        model.addAttribute("courses",resultService.getCourses());
-        model.addAttribute("students",resultService.getStudents());
+        model.addAttribute("courses",resultService.getCourseNames());
+        model.addAttribute("students",resultService.getStudentFullNames());
         model.addAttribute("scores", Score.values());
         model.addAttribute("headers",resultService.getTableHeaders());
         model.addAttribute("results",resultService.getResults());

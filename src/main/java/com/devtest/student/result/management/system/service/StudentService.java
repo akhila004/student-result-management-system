@@ -19,6 +19,8 @@ public class StudentService {
     public void createStudent(Student student){
         //student.setDateOfBirth(Sim);
         //student.setDateOfBirth(new Date(Constant.dateFormat.format(student.getDateOfBirth())));
+        student.setFirstName(student.getFirstName().toUpperCase());
+        student.setFamilyName(student.getFamilyName().toUpperCase());
         studentRepository.save(student);
     }
 

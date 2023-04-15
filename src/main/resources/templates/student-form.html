@@ -51,6 +51,7 @@
 
 
 
+
     </style>
 </head>
 <body>
@@ -67,44 +68,46 @@
                 Add New Student Details
             </div>
             <div class="card-body">
-            <form id="studentForm" name="studentForm" th:attr="action=@{'/STUDENTS/submit'}" method="POST"
-                  th:object="${student}">
-                <div class="form-group mb-3">
-                    <label for="firstName">First Name</label>
-                    <input th:value="${firstName}" th:field="${student.firstName}" type="text" class="form-control"
-                           id="firstName" name="firstName"
-                           placeholder="Enter first name" required>
-                    <div class="col-sm-5" hidden id="firstNameErrorMsg">
-                        <small id="firstNameHelp" class="text-danger">
-                            First Name is required and must contain only alphabets
-                        </small>
+                <form id="studentForm" name="studentForm" th:attr="action=@{'/STUDENTS/submit'}" method="POST"
+                      th:object="${student}">
+                    <div class="form-group mb-3">
+                        <label for="firstName">First Name</label>
+                        <input th:value="${firstName}" th:field="${student.firstName}" type="text" class="form-control"
+                               id="firstName" name="firstName"
+                               placeholder="Enter first name" required>
+                        <div class="col-sm-5" hidden id="firstNameErrorMsg">
+                            <small id="firstNameHelp" class="text-danger">
+                                First Name is required and must contain only alphabets
+                            </small>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group mb-3">
-                    <label for="familyName">Family Name</label>
-                    <input th:value="${familyName}" th:field="${student.familyName}" type="text" class="form-control"
-                           id="familyName" name="familyName"
-                           placeholder="Enter family name" required>
-                    <div class="col-sm-5" hidden id="familyNameErrorMsg">
-                        <small id="familyNameHelp" class="text-danger">
-                            Family Name is required and must contain only alphabets
-                        </small>
+                    <div class="form-group mb-3">
+                        <label for="familyName">Family Name</label>
+                        <input th:value="${familyName}" th:field="${student.familyName}" type="text"
+                               class="form-control"
+                               id="familyName" name="familyName"
+                               placeholder="Enter family name" required>
+                        <div class="col-sm-5" hidden id="familyNameErrorMsg">
+                            <small id="familyNameHelp" class="text-danger">
+                                Family Name is required and must contain only alphabets
+                            </small>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="dateOfBirth">Date of Birth</label>
-                    <input th:value="${dateOfBirth}" th:field="${student.dateOfBirth}" name="dateOfBirth" type="date"
-                           class="form-control" id="dateOfBirth"
-                           placeholder="Enter Date of Birth" required>
-                    <div class="col-sm-5" hidden id="dobErrorMsg">
-                        <small id="dateOfBirthHelp" class="text-danger">
-                            Student age must be atleast 10 years.
-                        </small>
+                    <div class="form-group mb-3">
+                        <label for="dateOfBirth">Date of Birth</label>
+                        <input th:value="${dateOfBirth}" th:field="${student.dateOfBirth}" name="dateOfBirth"
+                               type="date"
+                               class="form-control" id="dateOfBirth"
+                               placeholder="Enter Date of Birth" required>
+                        <div class="col-sm-5" hidden id="dobErrorMsg">
+                            <small id="dateOfBirthHelp" class="text-danger">
+                                Student age must be atleast 10 years.
+                            </small>
+                        </div>
                     </div>
-                </div>
-                <button type="button" class="btn btn-primary" onclick="validateForm(this);">Submit</button>
-            </form>
+                    <button type="button" class="btn btn-primary" onclick="validateForm(this);">Submit</button>
+                </form>
             </div>
         </div>
         <br>
@@ -161,7 +164,7 @@
 
 
 
-</script>
+
 </script>
 </body>
 </html>

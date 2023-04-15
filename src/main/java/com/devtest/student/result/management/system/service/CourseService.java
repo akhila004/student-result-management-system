@@ -17,7 +17,7 @@ public class CourseService {
     CourseRepository courseRepository;
 
     public void createCourse(Course course){
-
+        course.setCourseName(course.getCourseName().toUpperCase());
         courseRepository.save(course);
     }
 

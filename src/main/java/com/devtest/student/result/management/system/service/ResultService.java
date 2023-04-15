@@ -40,17 +40,21 @@ public class ResultService {
         return Constant.resultTableHeaders;
     }
 
-    public List<Course> getCourses(){
+    public List<String> getCourseNames(){
         Iterable<Course> courseIterable = courseRepository.findAll();
-        List<Course> courses = new ArrayList<Course>();
-        courseIterable.forEach(courses::add);
+        List<String> courses = new ArrayList<String>();
+        courseIterable.forEach(course -> {
+            courses.add(course.getCourseName().toUpperCase());
+        });
         return courses;
     }
 
-    public List<Student> getStudents(){
+    public List<String> getStudentFullNames(){
         Iterable<Student> studentIterable = studentRepository.findAll();
-        List<Student> students = new ArrayList<Student>();
-        studentIterable.forEach(students::add);
+        List<String> students = new ArrayList<String>();
+        studentIterable.forEach(student -> {
+            students.add(student.getFirstName().toUpperCase()+" "+student.getFamilyName().toUpperCase());
+        });
         return students;
     }
 }
