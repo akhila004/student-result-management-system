@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Result Management System</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+            crossorigin="anonymous"></script>
+
+    <style>
+        .container {
+            display: grid;
+            grid-template-areas:
+                "header header header"
+                "nav content content"
+                "footer footer footer";
+
+            grid-template-columns: 200px 1fr 200px;
+            grid-template-rows: auto 1fr auto;
+            grid-gap: 10px;
+
+            height: 100vh;
+        }
+        header {
+            grid-area: header;
+            margin-top: 20px;
+        }
+
+        nav {
+            grid-area: nav;
+            margin-left: 0.2rem;
+        }
+
+        main {
+            grid-area: content;
+        }
+
+        aside {
+            grid-area: side;
+            margin-right: 0.5rem;
+        }
+
+        footer {
+            grid-area: footer;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div th:insert="components/app-header :: app-header"></div>
+    </header>
+    <nav>
+        <div th:insert="components/page-list :: page-list (panelName = 'MENU', pages = ${pages})"></div>
+    </nav>
+    <main>
+        <div class="card">
+            <div class="card-header">
+                Add New Student Details
+            </div>
+            <div class="card-body">
+            <form id="studentForm" name="studentForm" th:attr="action=@{'/STUDENTS/submit'}" method="POST"
+                  th:object="${student}">
+                <div class="form-group mb-3">
+                    <label for="firstName">First Name</label>
+                    <input th:value="${firstName}" th:field="${student.firstName}" type="text" class="form-control"
+                           id="firstName" name="firstName"
+                           placeholder="Enter first name" required>
+                    <div class="col-sm-5" hidden id="firstNameErrorMsg">
+                        <small id="firstNameHelp" class="text-danger">
+                            First Name is required and must contain only alphabets
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="familyName">Family Name</label>
+                    <input th:value="${familyName}" th:field="${student.familyName}" type="text" class="form-control"
+                           id="familyName" name="familyName"
+                           placeholder="Enter family name" required>
+                    <div class="col-sm-5" hidden id="familyNameErrorMsg">
+                        <small id="familyNameHelp" class="text-danger">
+                            Family Name is required and must contain only alphabets
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="dateOfBirth">Date of Birth</label>
+                    <input th:value="${dateOfBirth}" th:field="${student.dateOfBirth}" name="dateOfBirth" type="date"
+                           class="form-control" id="dateOfBirth"
+                           placeholder="Enter Date of Birth" required>
+                    <div class="col-sm-5" hidden id="dobErrorMsg">
+                        <small id="dateOfBirthHelp" class="text-danger">
+                            Student age must be atleast 10 years.
+                        </small>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="validateForm(this);">Submit</button>
+            </form>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="card" th:if="${students!=null and !students.empty}">
+            </hr>
+            <div class="card-header">
+                Student Details
+            </div>
+            <div th:insert="components/student-table :: student-table (headers = ${headers}, students = ${students})"></div>
+        </div>
+    </main>
+    <!--footer>Footer content</footer-->
+</div>
+<script th:inline="javascript">
+ function validateForm(form){
+ var formValid = "true";
+ //RegEx for only alphabets
+ var letters = /^[A-Za-z]+$/;
+  var firstName = document.forms["studentForm"]["firstName"].value;
+  if(!firstName || !letters.test(firstName)){
+    document.getElementById("firstNameErrorMsg").hidden = false;
+    formValid = "false";
+    }
+  else{
+    document.getElementById("firstNameErrorMsg").hidden = true;
+    }
+  var familyName = document.forms["studentForm"]["familyName"].value;
+  if(!familyName || !letters.test(familyName)){
+    document.getElementById("familyNameErrorMsg").hidden = false;
+    formValid = "false";
+    }
+  else{
+    document.getElementById("familyNameErrorMsg").hidden = true;
+    }
+  var dob = document.forms["studentForm"]["dateOfBirth"].value;
+  console.log("DOB: "+dob);
+  var dobYear = new Date(dob).getFullYear();
+  console.log("DOB year: "+dobYear);
+  var currentYear = new Date().getFullYear();
+  console.log("current year: "+currentYear);
+  //TODO - consider exact 10+ years by including month in calculation
+  if((currentYear-dobYear) >= 10){
+    document.getElementById("dobErrorMsg").hidden = true;
+  }else{
+    document.getElementById("dobErrorMsg").hidden = false;
+    formValid = "false";
+     }
+     //submit form only if form is valid
+     if(formValid == "true"){
+        document.getElementById("studentForm").submit(); // Submit the form
+     }
+     }
+
+
+
+</script>
+</script>
+</body>
+</html>
