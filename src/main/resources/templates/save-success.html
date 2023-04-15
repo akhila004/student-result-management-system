@@ -16,10 +16,12 @@
 <div th:if="${success!=null}">
 
   <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>Student details saved successfully</strong>
-    <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close" th:onclick="|window.location.href='/STUDENTS'|">
+    <strong th:text="${success}"> </strong>
+      <a th:href="@{'/' + ${route}}">
+    <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
+      </a>
   </div>
 </div>
 </body>

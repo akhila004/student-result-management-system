@@ -6,5 +6,8 @@ import java.util.List;
 
 public final class Constant {
     public static final List<String> studentTableHeaders = Arrays.asList("#","First Name","Family Name","Date of Birth");
-    public static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    public static final List<String> courseTableHeaders = Arrays.asList("#","Course");
+
+    public static final List<String> resultTableHeaders = Arrays.asList("Course","Student","Score");
+
 }
