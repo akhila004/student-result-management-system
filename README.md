@@ -30,4 +30,9 @@ BootStrap - For CSS styling
 CSS Holy Grail  - Header/Navigation/Main Body/Footer Grid Layout
 MYSQL - Database
 
+Scope for Improvement:
+1. Project is using Thymleaf which is a Model View Controller framework, we can use better/advanced front-end technologies for better routing purposes.
+2. For displaying results in table format, we can use Pagination to handle large amounts of data.
+3. Advanced/Better UI CSS styling can be used.
+
 
