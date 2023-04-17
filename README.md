@@ -22,6 +22,9 @@ Steps to Run:
 8. First time deployment of application, tables must be created so set this property in aplication.properties as
 	spring.jpa.hibernate.ddl-auto=create
 	Later you can modify it to none/update accordingly
+9. Download the project from GIT repository.
+10. Open in any IDE.
+11. Run Application.java file in "<project-directory>com/devtest/student/result/management/system/Application.java"
 	
 Technologies used:
 Spring Boot - Server-side
